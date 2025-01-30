@@ -1,0 +1,50 @@
+# requirements.txt
+
+# Computing
+numpy<2.0
+
+# Radiomics
+pyradiomics
+scipy
+
+# Data manipulation and analysis
+pandas
+
+# Progress bar library
+tqdm
+
+# Plotting libraries
+matplotlib
+seaborn
+plotly
+
+# Neuroimaging data processing
+nibabel
+
+# Medical image processing
+pydicom
+SimpleITK
+
+# Image processing
+opencv-python-headless
+pillow
+scikit-image
+albumentations
+
+# Machine learning libraries
+scikit-learn
+imbalanced-learn
+
+# Deep learning libraries
+torch
+torchvision
+segmentation-models-pytorch
+pytorch-tabnet
+grad-cam
+
+# Hyperparameter optimization
+optuna
+kaleido
+
+# visualization
+captum

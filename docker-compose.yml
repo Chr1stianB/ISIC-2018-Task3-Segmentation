@@ -1,0 +1,30 @@
+# export UID=$(id -u)
+# export GID=$(id -g)
+# docker-compose up --build -d
+
+services:
+  pytorch_container:
+    build:
+      context: .
+      args:
+        USER_ID: ${UID}
+        GROUP_ID: ${GID}
+    container_name: lesion_segmentation_container
+    shm_size: '64gb'
+    volumes:
+      - ~/projects/skinLesions/segmentation:/app
+      - /data/projects_kbrzozowski/datasets/HAM10000:/data
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+    user: "${UID}:${GID}"
+    command: ["python", "evaluate_models.py"]
+    #command: ["sleep", "infinity"]
