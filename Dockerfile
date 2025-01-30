@@ -24,8 +24,9 @@ RUN pip install --no-cache-dir --upgrade pip && \
 # Copy the rest of the application code
 COPY . /app
 
-# Create a directory for Matplotlib config and set appropriate permissions
-RUN mkdir -p /app/matplotlib_config
+# Create a non-root user and switch to it
+RUN useradd -m appuser
+USER appuser
 
 # Default command
-CMD ["python", "evaluate_models.py"]
+CMD ["python", "main.py"]
